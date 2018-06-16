@@ -1,0 +1,22 @@
+log4j.rootLogger=trace, console, file
+
+# Same as above for specific loggers
+log4j.logger.com.fdmgroup.toystore.ToyStoreLogger = all
+
+# Define the file appender
+log4j.appender.file=org.apache.log4j.RollingFileAppender
+log4j.appender.file.File=toystore.log
+log4j.appender.file.Append=false
+log4j.appender.file.MaxFileSize=1MB
+log4j.appender.file.MaxBackupIndex=1
+
+# Specify file layout
+log4j.appender.file.layout=org.apache.log4j.PatternLayout
+log4j.appender.file.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n
+
+# Define the console appender
+log4j.appender.console=org.apache.log4j.ConsoleAppender
+
+# Specify console layout
+log4j.appender.console.layout=org.apache.log4j.PatternLayout
+log4j.appender.console.layout.ConversionPattern=%m%n

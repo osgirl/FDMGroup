@@ -1,0 +1,124 @@
+package ClassFolder;
+
+import java.util.ArrayList;
+
+public class myCalculator {
+	ArrayList<String> getOperands;
+	ArrayList<String> getOperators;
+	ArrayList<Double> workWithNumbers;
+	
+	public myCalculator(){
+		super();
+		getOperands = new ArrayList<String>();
+		getOperators = new ArrayList<String>();
+		workWithNumbers = new ArrayList<Double>();
+	}
+	
+	public Double compute(String expression){
+		if(expression == null || expression.equals(null)){
+			return null;
+		}
+		
+		expression = expression.replaceAll(" ", "");
+		if(expression.length() == 0 || expression.isEmpty()){
+			return null;
+		}
+		for(int index = 0; index < expression.length(); index++){
+			if(Character.isLetter(expression.charAt(index))){
+				return null;
+			}
+		}
+		
+		String[] operand = expression.split("\\*|\\/|\\-|\\+|\\- ");
+		if(operand.length == 1){
+			return null;
+		}
+		
+		for(String myStr : operand){
+			getOperands.add(myStr);
+		}
+		
+		for(int i=0; i<getOperands.size(); i++){
+			if(getOperands.get(i).equals("")){
+				String temp = getOperands.get(i+1);
+				getOperands.set(i+1, "-"+temp);
+				getOperands.remove(i);
+			}
+		}
+		
+		for(int i=0; i<getOperands.size(); i++){
+			double result = Double.parseDouble(getOperands.get(i));
+			workWithNumbers.add(result);
+		}
+		
+		for(int i=0; i<expression.length(); i++){
+			if((expression.substring(i,i+1).equals("^")) || (expression.substring(i,i+1).equals("*")) || (expression.substring(i,i+1).equals("/"))){
+				getOperators.add(expression.substring(i,i+1));
+			}
+			else if((expression.substring(i,i+1).equals("+")) || (expression.substring(i,i+1).equals("-"))){
+				if((!(expression.substring(i-1,i).equals("+"))) && (!(expression.substring(i-1,i).equals("-"))) && (!(expression.substring(i-1,i).equals("^"))) && (!(expression.substring(i-1,i).equals("*"))) && (!(expression.substring(i-1,i).equals("/")))){
+					getOperators.add(expression.substring(i,i+1));
+				}
+			}
+		}
+		
+		//Do Exponential Math 
+		ArrayList<Integer> deleteAfterExp = new ArrayList<Integer>();
+		for(int i=0; i<getOperators.size();i++){		
+			if(getOperators.get(i).equals("^")){
+				double result = Math.pow(workWithNumbers.get(i), workWithNumbers.get(i+1));
+				workWithNumbers.set(i+1, result);
+				deleteAfterExp.add(i);
+			}
+		}
+		for (int i=deleteAfterExp.size()-1; i>=0; i--){
+			int del = deleteAfterExp.get(i);
+			getOperators.remove(del);
+			workWithNumbers.remove(del);
+		}
+		
+		//Do Multiplication & Division
+		ArrayList<Integer> deleteAfterMD = new ArrayList<Integer>();
+		for(int i=0; i<getOperators.size();i++){
+			if(getOperators.get(i).equals("*")){
+				double result = workWithNumbers.get(i) * workWithNumbers.get(i+1);
+				workWithNumbers.set(i+1, result);
+				deleteAfterMD.add(i);
+			}
+			else if(getOperators.get(i).equals("/")){
+				double result = workWithNumbers.get(i) / workWithNumbers.get(i+1);
+				workWithNumbers.set(i+1, result);
+				deleteAfterMD.add(i);
+			}
+		}
+		for (int i=deleteAfterMD.size()-1; i>=0; i--){
+			int del = deleteAfterMD.get(i);
+			getOperators.remove(del);
+			workWithNumbers.remove(del);
+		}
+		
+		//Do Addition and Subtraction
+		ArrayList<Integer> deleteAfterAS = new ArrayList<Integer>();
+		for(int i=0; i<getOperators.size();i++){
+			if(getOperators.get(i).equals("+")){
+				double result = workWithNumbers.get(i) + workWithNumbers.get(i+1);
+				workWithNumbers.set(i+1, result);
+				deleteAfterAS.add(i);
+			}
+			else if(getOperators.get(i).equals("-")){
+				double result = workWithNumbers.get(i) - workWithNumbers.get(i+1);
+				workWithNumbers.set(i+1, result);
+				deleteAfterAS.add(i);
+			}
+		}
+		for (int i=deleteAfterAS.size()-1; i>=0; i--){
+			int del = deleteAfterAS.get(i);
+			getOperators.remove(del);
+			workWithNumbers.remove(del);
+		}
+		
+		
+		double answer = workWithNumbers.get(0);
+		return new Double(answer);
+	} 
+}

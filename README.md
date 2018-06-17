@@ -2,13 +2,11 @@
 Description: FDM Group Java Projects / Projects Reference - My Solutions Only <br />
 Last Update: 2018.06.16 <br />
 
-# Java Projects
+# Featured Projects
 - [BankDesign](https://github.com/yuelchen/FDMGroup/tree/master/Java%20Projects/BankDesign) - *Banking transaction logic* <br />
 - [Calculator](https://github.com/yuelchen/FDMGroup/tree/master/Java%20Projects/Calculator) - *Calculator application* <br />
-- [Collections](https://github.com/yuelchen/FDMGroup/tree/master/Java%20Projects/Collections) - *Object manipulation with collection classes*  <br />
 - [DesignPatterns](https://github.com/yuelchen/FDMGroup/tree/master/Java%20Projects/DesignPatterns) - *Java Factory, Observer, Pool and Singleton patterns* <br />
 - [GameDesign](https://github.com/yuelchen/FDMGroup/tree/master/Java%20Projects/GameDesign) - *Game program logic* <br />
-- [InnerClasses](https://github.com/yuelchen/FDMGroup/tree/master/Java%20Projects/InnerClasses) - *Writing innner classes within Java class files* <br />
 - [InputOutput](https://github.com/yuelchen/FDMGroup/tree/master/Java%20Projects/InputOutput) -  *Java I/O patterns* <br />
 - [MotorcycleFactory](https://github.com/yuelchen/FDMGroup/tree/master/Java%20Projects/MotorcycleFactory) - *Java Factory patterns with different motor vehicles* <br />
 - [OnlineToyStore](https://github.com/yuelchen/FDMGroup/tree/master/Java%20Projects/OnlineToyStore) - *Toy Store transaction logic with JDBC* <br />
